@@ -1,0 +1,34 @@
+{
+  "name": "data-columns",
+  "version": "1.0.0",
+  "description": "A column holds meta-data describing the type of data that goes in that column, along with methods to sanitize and validate it.",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c-butcher/data-columns.git"
+  },
+  "keywords": [
+    "Data",
+    "Column",
+    "Columns",
+    "Validation",
+    "Sanitation",
+    "Constraints"
+  ],
+  "author": "Chris Butcher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c-butcher/data-columns/issues"
+  },
+  "homepage": "https://github.com/c-butcher/data-columns#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "data-sanitizers": "^1.0.1",
+    "data-validators": "^1.0.2",
+    "formatted-error": "^1.0.1",
+    "mocha": "^5.2.0"
+  }
+}
