@@ -5,11 +5,14 @@ const Validator = require('data-validators').Validator;
 const ColumnType = require('./column-type');
 
 class Column {
-    constructor(options = {}) {
-        if (this.constructor === Column) {
-            throw new ColumnError("Column class cannot be called directly.");
-        }
 
+    /**
+     * Columns contain meta-data about a column/field, along with the methods to sanitize
+     * and validate the data it holds.
+     *
+     * @param {object} options
+     */
+    constructor(options = {}) {
         if (typeof options.type !== 'string') {
             throw new ColumnError("Argument 'options.type' must be an string.");
         }
@@ -33,6 +36,11 @@ class Column {
         });
     }
 
+    /**
+     * Standard default values for a column.
+     *
+     * @returns {{name: null, type: null, label: null, required: boolean, description: null, sanitizers: Array, validators: Array}}
+     */
     static defaults() {
         return {
             name: null,
@@ -45,6 +53,13 @@ class Column {
         };
     }
 
+    /**
+     * Adds a sanitizer to this column.
+     *
+     * @param {Sanitizer} sanitizer
+     *
+     * @returns {Column}
+     */
     addSanitizer(sanitizer) {
         if (!(sanitizer instanceof Sanitizer)) {
             throw new ColumnError("Argument 'sanitizer' must be a Sanitizer object.");
@@ -61,6 +76,13 @@ class Column {
         return this;
     }
 
+    /**
+     * Check to see if this column has a sanitizer.
+     *
+     * @param {string} type
+     *
+     * @returns {boolean}
+     */
     hasSanitizer(type) {
         let sanitizers = this._sanitizers.filter((instance) => {
             return instance.type === type;
@@ -69,10 +91,22 @@ class Column {
         return sanitizers.length > 0;
     }
 
+    /**
+     * Returns all of the sanitizer for this column.
+     *
+     * @returns {Array}
+     */
     getSanitizers() {
         return this._sanitizers;
     }
 
+    /**
+     * Cleans the value so that it will work with our column.
+     *
+     * @param {*} value
+     *
+     * @returns {*}
+     */
     sanitize(value) {
         this._sanitizers.forEach((cleaner) => {
             value = cleaner.sanitize(value);
@@ -81,6 +115,13 @@ class Column {
         return value;
     }
 
+    /**
+     * Adds a validator to the column.
+     *
+     * @param {Validator} validator
+     *
+     * @returns {Column}
+     */
     addValidator(validator) {
         if (!(validator instanceof Validator)) {
             throw new ColumnError("Argument 'validator' must be an instanceof Validator.");
@@ -97,6 +138,13 @@ class Column {
         return this;
     }
 
+    /**
+     * Check to see if this column has a validator type.
+     *
+     * @param {string} type
+     *
+     * @returns {boolean}
+     */
     hasValidator(type) {
         let validator = this._validators.filter((instance) => {
             return instance.type === type;
@@ -105,10 +153,22 @@ class Column {
         return validator.length > 0;
     }
 
+    /**
+     * Returns all of the validators for this column.
+     *
+     * @returns {Array}
+     */
     getValidators() {
         return this._validators;
     }
 
+    /**
+     * Check to see if the value follows this columns validation constraints.
+     *
+     * @param {*} value
+     *
+     * @returns {string[]}
+     */
     validate(value) {
         let errors = [];
 

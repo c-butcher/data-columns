@@ -1,6 +1,6 @@
 {
   "name": "data-columns",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A column holds meta-data describing the type of data that goes in that column, along with methods to sanitize and validate it.",
   "main": "main.js",
   "scripts": {

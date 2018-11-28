@@ -11,7 +11,7 @@ describe('Column Types', function() {
     });
 
     describe('constructor(name, description, sanitizers, validators)', function() {
-        it('throws error when instantiated directly', function() {
+        it('fails when instantiated directly', function() {
             chai.expect(function(){
                 let type = new ColumnType(
                     'color',
@@ -52,7 +52,7 @@ describe('Column Types', function() {
     });
 
     describe('get(name, options)', function() {
-        it('passes when column type exists exists', function() {
+        it('passes when column type exists', function() {
             ColumnType.add('string', new StringType());
 
             let string = ColumnType.get('string');
@@ -68,7 +68,7 @@ describe('Column Types', function() {
     });
 
     describe('has(name)', function() {
-        it('passes when column type exists exists', function() {
+        it('passes when column type exists', function() {
             ColumnType.add('string', new StringType());
 
             let exists = ColumnType.has('string');
