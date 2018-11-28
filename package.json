@@ -1,6 +1,6 @@
 {
   "name": "data-columns",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A column holds meta-data describing the type of data that goes in that column, along with methods to sanitize and validate it.",
   "main": "main.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "chai": "^4.2.0",
     "data-sanitizers": "^1.0.1",
-    "data-validators": "^1.0.2",
+    "data-validators": "^1.0.3",
     "formatted-error": "^1.0.1",
     "mocha": "^5.2.0"
   }
